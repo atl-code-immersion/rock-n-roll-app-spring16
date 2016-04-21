@@ -1,9 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h1>
   <%= @artist.name %>
+</h1>
+
+<h4>Songs:</h4>
+<p>
+	<% @artist.songs.each_with_index do |s, index| %>
+		<% if index < @artist.songs.length - 1 %>
+			<%= link_to "#{s.name}, ", s, class: "no-blue" %>
+		<% else %>
+			<%= link_to s.name, s, class: "no-blue" %>
+		<% end %>
+	<% end %>
 </p>
+
+<p>
+</p>
+
+<div>
+	<%= render 'songs/form' %>
+</div>
 
 <%= link_to 'Edit', edit_artist_path(@artist) %> |
 <%= link_to 'Back', artists_path %>
